@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block con %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1><b>회원가입</b></h1>
+        <input type="text" name="uname" placeholder="아이디를 입력하세요"><br><br>
+        <input type="password" name="upass" placeholder="패스워드를 입력하세요"><br><br>
+        <input type="email" name="umail" placeholder="이메일을 입력하세요"><br><br>
+        <input type="file" name="upic"><br><br>
+        <textarea rows="5" name="ucom" cols="70" placeholder="간단하게 자기소개 부탁드립니다 :)"></textarea><br><br><br>
+        <button>회원가입</button>
+    </form>
+{% endblock %}

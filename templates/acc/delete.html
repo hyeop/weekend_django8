@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block con %}
+    <form method="post">
+        {% csrf_token %}
+        <h4>삭제하시려면 현재 패스워드를 입력해주세요!</h4>
+        <input type="password" name="cpass">
+        <button>계정삭제</button>
+    </form>
+{% endblock %}

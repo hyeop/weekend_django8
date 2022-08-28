@@ -1,0 +1,36 @@
+<div>
+    <a href="{% url 'acc:index' %}" class="menu">HOME</a>
+    
+    {% if user.is_authenticated %}
+        <a href="{% url 'board:index' %}" class="menu">BOARD</a>
+        <a href="{% url 'trans:index' %}" class="menu">TRANS</a>
+        <a href="{% url 'acc:profile' %}" class="menu">PROFILE</a>
+        <a href="{% url 'acc:logout' %}" class="menu">LOGOUT</a>
+    {% else %}
+        <a href="{% url 'acc:login' %}" class="menu">LOGIN</a>
+        <a href="{% url 'acc:signup' %}" class="menu">SIGNUP</a>
+    {% endif %}
+</div>
+<hr>
+
+{% for i in messages %}
+    <b>{{ i.tags }}</b> {{ i.message }} <br>
+{% endfor %}
+
+<br>
+
+{% block con %}
+{% endblock %}
+
+<style>
+    .menu {
+        font-size: 25px;
+        font-weight: bold;
+        text-decoration: none;
+        color:black;
+        margin-right: 25px;
+    }
+    .menu:hover{
+        color: red;
+    }
+</style>

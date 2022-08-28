@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block con %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1><b>{{ user }}'s 프로필 수정</b></h1>
+
+        이메일 <input type="email" name="umail" value="{{user.email}}"><br><br>
+        <input type="file" name="upic"><br><br>
+        <textarea cols="70" rows="5" name="ucom">{{user.comment}}</textarea><br><br><br>
+
+        <a href="{% url 'acc:chpass' %}"><button type="button">패스워드 변경</button></a>
+        <button>정보수정</button>
+        
+    </form>
+{% endblock %}

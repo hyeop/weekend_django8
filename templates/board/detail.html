@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block con %}
+
+    <h1>{{ b.subject }}</h1>
+
+    <img src="{{ b.writer.getpic }}" width="150px">
+    <h4>written by <b>{{ b.writer }}</b></h4>
+
+    <textarea rows="5" cols="70" disabled>{{ b.content }}</textarea>
+    <br><br>
+    <a href="{% url 'board:index' %}"><button>HOME</button></a>
+    {% if b.writer == user %}
+        <a href="{% url 'board:update' b.id %}"><button>MOD</button></a>
+        <a href="{% url 'board:delete' b.id %}"><button>DEL</button></a>
+    {% endif %}
+
+    <hr>
+    {% if user in b.likey.all %}
+        <a href="{% url 'board:unlikey' b.id %}"><button>취소</button></a>
+    {% else %}
+        <a href="{% url 'board:likey' b.id %}"><button>좋아요</button></a>
+    {% endif %}
+    <hr> 
+
+    <form method="post" action="{% url 'board:creply' b.id %}">
+        {% csrf_token %}
+        <input type="text" name="com" size="100">
+        <button>댓글작성</button>
+    </form>
+
+    {% for i in rset %}
+        <img src="{{i.replyer.getpic}}" width="50px"> <b>{{i.replyer}}</b> {{i.comment}} 
+        {% if i.replyer == user %}
+            <a href="{% url 'board:dreply' b.id i.id %}"><button>x</button></a>
+        {% endif %}
+        <br><br>
+    {% empty %}
+        첫번째 댓글을 달아주세요!
+    {% endfor %}
+
+
+
+{% endblock %}

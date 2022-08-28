@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block con %}
+
+    <h1>{{ user }}'s 프로필</h1>
+
+    <img src="{{ user.getpic }}" width="250px"><br><br>
+    사용자 아이디 <input type="text" value="{{user}}" disabled><br><br>
+    이메일 <input type="text" value="{{ user.email }}" disabled><br><br>
+    포인트 점수 <input type="text" value="{{user.point}} P" disabled><br><br>
+    <textarea rows="5" cols="70" disabled>{{ user.comment }}</textarea><br><br><br>
+
+    
+    <a href="{% url 'acc:update' %}"><button>정보수정</button></a>
+    <a href="{% url 'acc:delete' %}"><button>계정삭제</button></a>
+{% endblock %}

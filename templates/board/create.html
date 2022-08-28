@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block con %}
+    <h1>게시글 생성 페이지</h1>
+
+    <form method="post" name="createForm">
+        {% csrf_token %}
+        <input type="text" name="sub" size="35" placeholder="제목을 입력해주세요"><br><br>
+        <input type="text" value="{{user}}" disabled><br><br>
+        <textarea cols="70" name="con" rows="5" placeholder="내용을 입력해주세요"></textarea><br><br>
+        <button type="button" onclick="check()">생성</button>
+    </form>
+
+    <script>
+        function check(){
+            cf = document.createForm;
+            if (!cf.sub.value){
+                alert("제목을 입력해주세요");
+            }else if(cf.con.value.length < 5){
+                alert("적어도 5 글자 이상은 입력하세요...");
+            }else{
+                cf.submit();
+            }
+        }
+    </script>
+{% endblock %}
